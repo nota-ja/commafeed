@@ -1,0 +1,11 @@
+---
+applications:
+- name: commafeed
+  path: target/commafeed.jar
+  memory: 1024M
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git#v3.3
+  services:
+  - pg-commafeed
+  env:
+    JAVA_OPTS: '-Djava.net.preferIPv4Stack=true -Ddw.server.applicationConnectors[0].port=\$PORT'
+    JBP_CONFIG_JAVA_MAIN: '[arguments: "server ./config.yml"]'
